@@ -1,0 +1,33 @@
+import unittest
+from unittest.mock import patch
+from io import StringIO
+import sys
+from CreateSchedule import CreateSchedule
+
+class test_CreateSchedule(unittest.TestCase):
+    def setUp(self):
+        self.scheduleTest = CreateSchedule()
+
+    @patch('builtins.input', side_effect=['3'])
+    def test_ScheduleList(self, mock_input):
+        self.scheduleTest.ScheduleList()
+        expected = {'Class1': 'empty', 'Class2': 'empty', 'Class3': 'empty'}
+        self.assertEqual(self.scheduleTest.schedule, expected)
+
+    @patch('builtins.input', side_effect=['CSS222','2'])
+    def test_addToSchedule_sucess(self, mock_input):
+        self.scheduleTest.schedule = {'Class1': 'empty', 'Class2': 'empty', 'Class3': 'empty'}
+        self.scheduleTest.AddToSchedule()
+        self.assertEqual(self.scheduleTest.schedule['Class2'], 'CSS222')
+
+    @patch('sys.stdout', new_callable=StringIO)
+    @patch('builtins.input', side_effect=['MATH165', '5'])
+    def test_addToSchedule_fail(self, mock_input,  mock_stdout):
+        self.scheduleTest.schedule ={'Class1': 'empty', 'Class2': 'empty', 'Class3': 'empty'}
+        self.scheduleTest.AddToSchedule()
+        output = mock_stdout.getvalue().strip()
+        self.assertIn("That is not a spot in the schedule", output)
+        self.assertEqual(len(self.scheduleTest.schedule), 3)
+
+if __name__ == '__main__':
+    unittest.main()
