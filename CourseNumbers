@@ -1,0 +1,13 @@
+class view_Courses():
+    def __init__(self):
+        self.classInfo = ['courses.txt', 'courses1.txt', 'courses2.txt']
+
+    def viewCourses(self):
+        seen_courses = set()
+        for file in self.classInfo:
+            with open(file, 'r') as f:
+                for line in f:
+                    course = line.split("\t")[0].strip()
+                    if course and course not in seen_courses:
+                        seen_courses.add(course)
+                        print(course)
