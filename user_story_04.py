@@ -22,3 +22,16 @@ def display_schedule(schedule):
     # Returns the completed schedule
     return output
 
+# Displays the main menu
+def main_menu(schedule):
+    print("1. View Generated Schedule")
+    print("2. Exit")
+
+    choice = input("Select an option: ")
+
+    # Displays the generated schedule
+    if choice == "1":
+        print(display_schedule(schedule))
+    # Exits 
+    else:
+        print("Exiting...")
