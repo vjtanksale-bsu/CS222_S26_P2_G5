@@ -5,7 +5,7 @@ def is_empty_schedule(schedule):
 # Creates formatted schedule for the student to view
 def display_schedule(schedule):
 
-    # Checks if the schedule is empty
+    # Checks if schedule is empty
     if is_empty_schedule(schedule):
         return "No schedule available"
     
@@ -14,10 +14,11 @@ def display_schedule(schedule):
     
     # Adds each course's information to the schedule
     for course in schedule:
+        output += "\n------------------"
         output += "\nCourse Number: " + course["course"]
         output += "\nSection Number: " + course["section"]
         output += "\nMeeting Days: " + course["days"]
-        output += "\nMeeting Time: " + course["start"] + "-" + course["end"] + "\n"
+        output += "\nMeeting Time: " + course["start"] + " - " + course["end"] + "\n"
     
     # Returns the completed schedule
     return output

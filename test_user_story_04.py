@@ -60,6 +60,37 @@ class TestUserStory04(unittest.TestCase):
         self.assertIn("0900", result)
         self.assertIn("0950", result)
 
+    # Tests displaying multiple courses
+    def test_display_multiple_courses(self):
+        schedule = [
+            {
+                "course": "CS120",
+                "section": "001",
+                "days": "MWF",
+                "start": "0900",
+                "end": "0950"
+            },
+            {
+                "course": "CS121",
+                "section": "002",
+                "days": "TR",
+                "start": "1100",
+                "end": "1150"
+            }
+        ]
+        result = display_schedule(schedule)
+        self.assertIn("CS120", result)
+        self.assertIn("CS121", result)
+        self.assertIn("001", result)
+        self.assertIn("002", result)
+        self.assertIn("MWF", result)
+        self.assertIn("TR", result)
+        self.assertIn("0900", result)
+        self.assertIn("0950", result)
+        self.assertIn("1100", result)
+        self.assertIn("1150", result)
+
+
 if __name__ == "__main__":
     unittest.main()
         
